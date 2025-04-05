@@ -7,6 +7,4 @@ Added some of my music on here
 ### REQUIREMENTS(External libs):
    keyboard
    #### Install
-        '''
-        pip install keyboard
-        '''
+   pip install keyboard
