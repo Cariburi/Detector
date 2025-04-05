@@ -4,5 +4,9 @@ NB: This is my first project
 
 Added some of my music on here
 
-## REQUIREMENTS(External libs):
+### REQUIREMENTS(External libs):
    keyboard
+   #### Install
+        '''
+        pip install keyboard
+        '''
