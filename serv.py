@@ -7,38 +7,11 @@ import keyboard as k
 from p import run
 import ctypes
 
+# Used to check if dirs are already in use
 dir_conts = []
-dont = ["AppData", "Application Data", "$Recycle.Bin", "Public", "All Users"]
 
 # Directories
-dirs = [
-    "C:/Users/mouse/",
-    "C:/Users/mouse/documents",
-    "C:/Users/mouse/Onedrive/Documents",
-    "C:/Users/mouse/Downloads"
-]
-
-def os_traverse(starting_dir):
-    starting_dir = os.path.abspath(starting_dir)
-    i = 0
-    while i <= 100:
-        for p in os.listdir(starting_dir):
-            np = os.path.join(starting_dir, p)
-
-            if any(app in np for app in dont):
-                print(f"{np}: Skippig(Permission required)")
-                continue
-
-            if any(p in np for p in dirs):
-                print(f"{p}: Already scanning")
-
-            if os.path.isdir(np):
-                i += 1
-                dirs.append(np)
-                os_traverse(np)
-            else:
-                continue
-
+dirs = []
 
 def get_file_name(list_files: list, file: str):
     if file not in list_files:
@@ -112,22 +85,21 @@ def thread():
         thr2.daemon = True
         thr2.start()
 
-def admin():
-    return ctypes.windll.shell32.ShellExecuteW(None, "runas", "python", __file__, None, 1)
-
 # Starting the Func( !Dont Change! )
 if __name__ == "__main__":
-    admin()
-
     thr = t(target=quit)
     thr.start()
     thr2 = t(target=test)
     thr2.daemon = True
     thr2.start()
 
+    with open("dir_names.txt", "r") as f:
+        text = f.readlines()
+        for directory in text:
+            dirs.append(directory)
+
     prompt = input("Enter a directory you want to scan( Else type in start): ")
     if prompt == "start":
-        os_traverse("/Users/mouse/")
         thread()
     else:
         dirs.append(dir)
