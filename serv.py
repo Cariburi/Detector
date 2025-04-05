@@ -4,8 +4,6 @@ from threading import Thread as t
 import os
 import sys
 import keyboard as k
-from p import run
-import ctypes
 
 # Used to check if dirs are already in use
 dir_conts = []
@@ -37,7 +35,6 @@ def check_files(directory):
             for file in f:
                 if get_file_name(initial_files, file):
                     print(f"{file}: THIS FILE/DIRECTORY(file) WAS ADDED")
-                    run(directory)
             
             initial_files = f
         
