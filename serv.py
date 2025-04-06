@@ -90,7 +90,7 @@ if __name__ == "__main__":
     thr2.daemon = True
     thr2.start()
 
-    with open("dir_names.txt", "r") as f:
+    with open("Directories.txt", "r") as f:
         text = f.readlines()
         for directory in text:
             dirs.append(directory)
